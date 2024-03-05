@@ -3,6 +3,12 @@ const app = express();
 const bodyParser = require("body-parser");
 const connection = require("./database/database");
 
+const userController = require("./user/UserController");
+//const teamController = require("./team/TeamController");
+
+const User = require("./user/User");
+//const Team = require("./team/Team");
+
 // setando a view engine que vai fazer o html ser renderizado quando a pagina for passada pelas rotas podendo usar o node entre o html
 app.set('view engine','ejs');
 
@@ -21,6 +27,8 @@ connection
      }).catch((error)=>{
           console.log(error);
      }) 
+
+app.use("/",userController);
 
 app.get('/',(req,res)=>{ // na rota '/' ele manda um hello world
      res.render("index"); // o ejs ja identifica e busca os arquivos dentro da pasta view sem precisar colocar todo o caminho
