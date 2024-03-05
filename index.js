@@ -4,10 +4,8 @@ const bodyParser = require("body-parser");
 const connection = require("./database/database");
 
 const userController = require("./user/UserController");
-//const teamController = require("./team/TeamController");
 
 const User = require("./user/User");
-//const Team = require("./team/Team");
 
 // setando a view engine que vai fazer o html ser renderizado quando a pagina for passada pelas rotas podendo usar o node entre o html
 app.set('view engine','ejs');

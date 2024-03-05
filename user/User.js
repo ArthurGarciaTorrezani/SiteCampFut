@@ -1,6 +1,6 @@
 const Sequelize = require("sequelize");
 const connection = require("../database/database");
-const Team = require("../team/Team");
+
 
 const User = connection.define('user',{
      name:{
@@ -21,8 +21,5 @@ const User = connection.define('user',{
      }
 });
 
-//Team.hasMany(User);
-//User.belongsTo(Team);
-
-//User.sync({force:true});
+User.sync({force:false});
 module.exports = User;
