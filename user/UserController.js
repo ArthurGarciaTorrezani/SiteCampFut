@@ -28,7 +28,7 @@ router.post("/createUser", (req, res) => {
   var senha = req.body.senha;
 
   //verificar se ja existe um usuario com o mesmo ra
-  User.findOne({ where: { ra: ra } }).then((user) => {
+  User.findOne({ where: { ra:ra } }).then((user) => {
     if (user == undefined) {
       //criptografia da senha
       var salt = bcrypt.genSaltSync(10);
@@ -41,7 +41,7 @@ router.post("/createUser", (req, res) => {
         password: hash,
       })
         .then(() => {
-          res.json({ nome, ra, curso, hash });
+          res.redirect("/loginUser")
         })
         .catch((erro) => {
           res.send(erro);
@@ -53,17 +53,17 @@ router.post("/createUser", (req, res) => {
 });
 
 router.post("/authenticateUser",(req,res)=>{
-     var name = req.body.nome;
+     var ra = req.body.ra;
      var password = req.body.senha; 
 
-     User.findOne({where:{name:name}}).then(user=>{
+     User.findOne({where:{ra:ra}}).then(user=>{
           if(user != undefined){
                // validar senha
                var correct = bcrypt.compareSync(password,user.password);
                if(correct){
                     req.session.user = {
                          id: user.id,
-                         name:user.name
+                         ra:user.ra
                     }
                    res.redirect("/user/homePageUser");
                }else{
