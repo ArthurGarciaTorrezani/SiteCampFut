@@ -1,11 +1,9 @@
 <%- include('../partials/navBar') -%> <%- include('../partials/header') -%>
 
-<form action="/createUser" method="post">
+<form action="/authenticateUser" method="post">
     <input type="text" name="nome" placeholder="nome">
-    <input type="text" name="ra" placeholder="ra">
-    <input type="text" name="curso" placeholder="curso">
     <input type="password" name="senha" placeholder="senha">
-    <button type="submit">Criar</button>
+    <button type="submit">Entrar</button>
 </form>
 
 <%- include('../partials/footer') -%>
